@@ -516,3 +516,30 @@ body::after {
 .back-link a:hover {
   color: #2d1b36;
 }
+
+/* Ensure the parent icon can hold the absolute overlay */
+.social-icon {
+  position: relative;
+  overflow: hidden;
+  /* Keeps the square Google button within your circle */
+}
+
+/* Make Google's component completely invisible but spread across your icon */
+.hidden-google-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  /* Makes it 100% see-through */
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Force Google's inner iframe/button elements to scale up to fill your wrapper */
+.hidden-google-wrapper * {
+  width: 100% !important;
+  height: 100% !important;
+  cursor: pointer !important;
+}

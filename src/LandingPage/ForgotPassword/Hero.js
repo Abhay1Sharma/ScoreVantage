@@ -5,7 +5,7 @@ function Hero() {
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState('idle'); // Starting at idle for normal form visibility
     
-    const backendUrl = "http://localhost:3001";
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const handleRequest = async (e) => {
         e.preventDefault();
