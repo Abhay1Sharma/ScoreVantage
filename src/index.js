@@ -12,8 +12,7 @@ import VerifyEmail from './LandingPage/VerifyEmail/VerifyEmail.js';
 import ForgotPassword from './LandingPage/ForgotPassword/ForgotPassword.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const clientId = process.env.REACT_APP_CLIENTID || "848227876820-u696kj85v3v9rcm29ni1328dfhp0a87i.apps.googleusercontent.com";
-console.log(clientId);
+const clientId = process.env.REACT_APP_CLIENTID;
 
 function App() {
 

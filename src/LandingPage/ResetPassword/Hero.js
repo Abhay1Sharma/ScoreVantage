@@ -10,7 +10,7 @@ function ResetPassword() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
 
-    const backendUrl = "http://localhost:3001";
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     const token = searchParams.get('token');
 
     const handleUpdate = (e) => {

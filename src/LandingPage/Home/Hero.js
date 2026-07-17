@@ -346,11 +346,11 @@
 // export default Hero;
 
 import axios from "axios";
-import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../AuthContext.js";
 import { GoogleLogin } from "@react-oauth/google";
+import React, { useState, useEffect, useRef } from "react";
 
 function Hero() {
     const slides = ['slide1', 'slide2', 'slide3', 'slide4'];
@@ -367,8 +367,8 @@ function Hero() {
     const navigate = useNavigate();
     const fetchUser = useAuth();
 
-    const backendUrl = "http://localhost:3001";
-    const dashboardUrl = "http://localhost:3002";
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const dashboardUrl = process.env.REACT_APP_DASHBOARD_URL;
 
     const startAutoSlide = () => {
         stopAutoSlide();
@@ -406,7 +406,7 @@ function Hero() {
             setTimeout(() => { console.log("Wait...."), 40000 });
 
             // toast.success("Welcome " + (res.data.user?.username || ""));
-            window.location.href = `http://localhost:3002?token=${res.data.token}` || `${dashboardUrl}?token=${res.data.token}`;
+            window.location.href = `${dashboardUrl}?token=${res.data.token}`;
         } catch (err) {
             toast.error("Google Authentication Failed");
         }
