@@ -367,8 +367,8 @@ function Hero() {
     const navigate = useNavigate();
     const fetchUser = useAuth();
 
-    const backendUrl = process.env.REACT_APP_BACKEND_URL;
-    const dashboardUrl = process.env.REACT_APP_DASHBOARD_URL;
+    const backendUrl = "http://localhost:3001";
+    const dashboardUrl = "http://localhost:3002";
 
     const startAutoSlide = () => {
         stopAutoSlide();
@@ -395,16 +395,18 @@ function Hero() {
 
     const handleGoogleSuccess = async (tokenResponse) => {
         try {
+            console.log("handleGoogleSuccess function called ....", tokenResponse);
             const res = await axios.post(`${backendUrl}/api/google-login`, {
                 token: tokenResponse.access_token || tokenResponse.credential,
             });
 
+
             localStorage.setItem("token", res.data.token);
-
             console.log(res.data.token);
+            setTimeout(() => { console.log("Wait...."), 40000 });
 
-            toast.success("Welcome " + (res.data.user?.username || ""));
-            window.location.href = `${dashboardUrl}?token=${res.data.token}`;
+            // toast.success("Welcome " + (res.data.user?.username || ""));
+            window.location.href = `http://localhost:3002?token=${res.data.token}` || `${dashboardUrl}?token=${res.data.token}`;
         } catch (err) {
             toast.error("Google Authentication Failed");
         }
@@ -419,12 +421,11 @@ function Hero() {
             const res = await axios.post(`${backendUrl}/login`, formData, { withCredentials: true });
             localStorage.setItem('token', res.data.token);
 
-            // Fixed: greeting using email or returned user data, since 'name' isn't gathered in login inputs
             toast.success(`Welcome Back!`);
 
             window.location.href = `${dashboardUrl}?token=${res.data.token}`;
         } catch (err) {
-            const message = err.response?.data?.message || "Invalid Username or Password";
+            const message = err.response?.data?.message || "Invalid Email or Password";
             toast.error(message);
             console.error("Login Error:", err.response?.data);
         } finally {
