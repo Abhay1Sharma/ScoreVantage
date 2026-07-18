@@ -596,7 +596,7 @@ function Hero() {
                                     {!loading ? (
                                         <button type="submit" className="auth-btn">Sign in →</button>
                                     ) : (
-                                        <button style={{ cursor: "none" }} className="auth-btn" type="button" disabled>
+                                        <button style={{ cursor: "none" }} className="auth-btn" type="button" style={{ cursor: "no-drop" }}>
                                             <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                             Sign in...
                                         </button>
@@ -648,7 +648,7 @@ function Hero() {
                                     {!submitting ? (
                                         <button type="submit" className="auth-btn">Get started ✨</button>
                                     ) : (
-                                        <button className="auth-btn" type="button" disabled>
+                                        <button className="auth-btn" type="button" style={{ cursor: "no-drop" }}>
                                             <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                             Get started... ✨
                                         </button>
